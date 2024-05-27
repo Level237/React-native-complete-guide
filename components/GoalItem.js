@@ -15,4 +15,7 @@ const styles=StyleSheet.create({
         backgroundColor:'#5e0acc',
         padding:8,
       },
+      goalText:{
+        color:'white'
+      }
 })
