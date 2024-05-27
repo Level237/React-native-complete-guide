@@ -18,8 +18,9 @@ export default function GoalInput(props) {
       <Image style={styles.image} source={require('../assets/images/goal.png')}/>
       <TextInput style={styles.textInput} value={enteredGoalInput} placeholder='Your course Goal' onChangeText={goalInputHandler }/>
       <View style={styles.buttonContainer}>
-         <Button onPress={addGoalHandler} title='Add Goal'/>
-         <Button  title='Cancel' onPress={props.endModal}/>
+      <Button  title='Cancel' onPress={props.endModal} color="#f31282"/>
+         <Button onPress={addGoalHandler} title='Add Goal' color="#b180f0"/>
+         
       
       </View>
       
@@ -38,10 +39,13 @@ const styles=StyleSheet.create({
       },
       textInput:{
         borderWidth:1,
-        borderColor:"#cccccc",
+        borderColor:"#e4d0ff",
+        backgroundColor:"#e4d0ff",
+        color:"#120438",
+        borderRadius:6,
         width:'70%',
         marginRight:8,
-        padding:8
+        padding:6
       },
       buttonContainer:{
         flexDirection:'row',
