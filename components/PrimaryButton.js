@@ -29,7 +29,8 @@ const styles=StyleSheet.create({
         paddingVertical:8,
         paddingHorizontal:16,
         elevation:2,
-        margin:4
+        margin:4,
+        padding:56
     },
     buttonText:{
         color:'white',
