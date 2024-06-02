@@ -22,7 +22,7 @@ export default function App() {
 <ImageBackground 
 source={require('./assets/images/background.png')} 
 resizeMode='cover' 
-style={styles.rootScreen}
+style={styles.rootScreen} 
 imageStyle={styles.backgroundImage}
 >
   <SafeAreaView style={styles.rootScreen}>
