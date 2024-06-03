@@ -14,6 +14,7 @@ export default function App() {
 
   const [useNumber,setUserNumber]=useState('')
   const [gameIsOver,setGameIsOver]=useState(true)
+  const [guessRounds,setGuessRounds]=useState(0)
   const [fontsLoaded,fontError]=useFonts({
     "open-sans":require('./assets/fonts/OpenSans-Regular.ttf'),
     "open-sans-bold":require('./assets/fonts/OpenSans-Bold.ttf')
@@ -36,13 +37,18 @@ export default function App() {
   function gameOverHandler(){
     setGameIsOver(true)
   }
+
+  function startNewGameHandler(){
+    setUserNumber(null);
+    setGuessRounds(0)
+  }
   let screen=<StartGameScreen onPickNumber={pickedNumberHandler}/>
 
   if(useNumber){
     screen=<GameScreen userNumber={useNumber} onGameOver={gameOverHandler}/>
   }
   if(gameIsOver && useNumber){
-    screen=<GameOverScreen/>
+    screen=<GameOverScreen useNumber={useNumber} roundsNumber={guessRounds} onStartNewGame={startNewGameHandler} />
   }
 
   return( <LinearGradient onLayout={onLayoutRootView} colors={[Colors.primary700,Colors.accent500]} style={styles.rootScreen}>
