@@ -25,7 +25,7 @@ export default function GameScreen({userNumber,onGameOver}) {
     const [guessRound,setGuessRounds]=useState([])
   useEffect(()=>{
     if(currentGuess===userNumber){
-      onGameOver()
+      onGameOver(guessRound.length)
     }
   },[currentGuess,userNumber,onGameOver])
 
@@ -75,7 +75,7 @@ export default function GameScreen({userNumber,onGameOver}) {
 </View>
 
 </Card>
-<View style={styles.buttonContainer} >
+<View style={styles.listContainer} >
  {/*{  guessRound.map(guessRound=><Text key=guessRound>guessRound</Text>) }}*/}
  <FlatList data={guessRound} renderItem={(itemData)=>(<GuessLogItem roundNumber={guessRoundsListLength - itemData.index} guess={itemData.item}/>
   )}
@@ -101,5 +101,9 @@ const styles=StyleSheet.create({
   },
   instructionText:{
     marginBottom:16
+  },
+  listContainer:{
+    flex:1,
+    padding:6
   }
 })
