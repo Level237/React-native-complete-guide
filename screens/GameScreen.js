@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Alert} from "react-native"
+import { StyleSheet, Text, View,Alert, FlatList} from "react-native"
 import Title from "../components/ui/Title"
 import { useEffect, useState } from "react";
 import NumberContainer from "../components/game/NumberContainer";
@@ -75,6 +75,11 @@ export default function GameScreen({userNumber,onGameOver}) {
 </Card>
 <View>
  {/*{  guessRound.map(guessRound=><Text key=guessRound>guessRound</Text>) }}*/}
+ <FlatList data={guessRound} renderItem={(itemData)=>{
+  return <Text>{itemData.item}</Text>
+ }}
+ keyExtractor={(item)=>item}
+ />
 </View>
 
     </View>
