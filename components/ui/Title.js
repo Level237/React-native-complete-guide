@@ -17,6 +17,8 @@ const styles=StyleSheet.create({
         padding:10,
         textAlign:'center',
         borderWidth:2,
-        borderColor:"white"
+        borderColor:"white",
+        maxWidth:"80%",
+        width:300
     }
 })

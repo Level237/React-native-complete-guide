@@ -92,6 +92,7 @@ const styles=StyleSheet.create({
         marginTop:30,
         flex:1,
         padding:12,
+        alignItems:'center'
     },
     alignBtn:{
       flexDirection:"row"
