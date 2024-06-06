@@ -25,7 +25,7 @@ export default function GameOverScreen({roundsNumber,useNumber,onStartNewGame}) 
   return (
     <ScrollView style={styles.screen}>
 <View style={styles.rootContainer}>
-      <Title>GAME OVER!</Title>
+      <Title>GAME OVER d!</Title>
       <View style={[styles.imageContainer,imageStyle]}>
       <Image style={styles.image} source={require('../assets/images/success.png')}/>
       </View>
