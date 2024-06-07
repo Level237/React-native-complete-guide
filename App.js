@@ -2,13 +2,13 @@
 import { StyleSheet,ImageBackground,SafeAreaView} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import GameScreen from './screens/GameScreen';
 import Colors from './constants/colors';
 import GameOverScreen from './screens/GameOverScreen';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-
+import { StatusBar } from 'expo-status-bar';
 SplashScreen.preventAutoHideAsync();
 export default function App() {
 
@@ -52,7 +52,10 @@ export default function App() {
     screen=<GameOverScreen useNumber={useNumber} roundsNumber={guessRounds} onStartNewGame={startNewGameHandler} />
   }
 
-  return( <LinearGradient onLayout={onLayoutRootView} colors={[Colors.primary700,Colors.accent500]} style={styles.rootScreen}>
+  return( 
+  <>
+<StatusBar style='light' />
+<LinearGradient onLayout={onLayoutRootView} colors={[Colors.primary700,Colors.accent500]} style={styles.rootScreen}>
 <ImageBackground 
 source={require('./assets/images/background.png')} 
 resizeMode='cover' 
@@ -65,7 +68,12 @@ imageStyle={styles.backgroundImage}
 
 </ImageBackground>
 
-  </LinearGradient>)
+  </LinearGradient>
+  </>
+  
+
+  
+  )
 
 }
 
