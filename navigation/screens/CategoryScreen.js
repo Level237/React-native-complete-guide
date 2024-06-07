@@ -15,7 +15,8 @@ export default function CategoryScreen() {
       <FlatList
         data={CATEGORIES}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={renderCategoryItem}
+        numColumns={2}
       />
     </View>
   )
