@@ -14,7 +14,8 @@ export default function CategoryScreen({navigation}) {
         return <CategoryGridTile
         onPress={pressHandler}
             title={itemData.item.title}
-            color={itemData.item.color}/>
+            color={itemData.item.color}
+            />
     }
   return (
     <View>
