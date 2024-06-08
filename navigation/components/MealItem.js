@@ -4,7 +4,7 @@ export default function MealItem({title,imageUrl,duration,complexity,affordabili
   return (
     <View style={styles.mealItem}>
         <Pressable android_ripple={{ color:"#ccc" }}
-        style={(pressed)=>!pressed  ? styles.buttonPressed : null} 
+        style={({pressed})=>pressed  ? styles.buttonPressed : null} 
         
         >
 
