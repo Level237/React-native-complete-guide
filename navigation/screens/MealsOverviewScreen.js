@@ -4,14 +4,27 @@ import MealItem from '../components/MealItem';
 
 export default function MealsOverviewScreen({route}) {
 
+    
     const categoryId=route.params.categoryId;
     const displayedMeals=MEALS.filter((mealItem)=>{
         return mealItem.categoryIds.indexOf(categoryId)>=0;
     })
 
     function renderMealItem(itemData){
+        const item=itemData.item;
+
+    const mealsProps={
+        title:item.title,
+        imageUrl:item.imageUrl,
+        affordability:item.affordability,
+        complexity:item.complexity,
+        duration:item.duration
+    }
         return <View>
-           <MealItem title={itemData.item.title}/>
+           <MealItem 
+          {...mealsProps}
+           />
+           
         </View>
     }
   return (
