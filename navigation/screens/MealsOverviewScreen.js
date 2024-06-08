@@ -31,7 +31,8 @@ export default function MealsOverviewScreen({route,navigation}) {
         duration:item.duration
     }
         return <View>
-           <MealItem 
+           <MealItem
+           id={item.id}
           {...mealsProps}
            />
            
