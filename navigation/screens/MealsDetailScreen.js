@@ -5,6 +5,7 @@ import { CATEGORIES, MEALS } from '../data/dummy-data'
 import MealDetail from '../components/MealDetail';
 import Subtitle from '../components/MealDetail/Subtitle';
 import List from '../components/MealDetail/List';
+import IconButton from '../components/IconButton';
 export default function MealsDetailScreen({route,navigation}) {
     const mealId=route.params.mealId;
     const selectedMeal=MEALS.find((meal)=>meal.id===mealId)
@@ -15,7 +16,7 @@ export default function MealsDetailScreen({route,navigation}) {
     useLayoutEffect(()=>{
         navigation.setOptions({
           headerRight:()=>{
-            return <Button  title='Tap me' onPress={headerButtonPressHandler}/>
+            return <IconButton icon="star" color="white" onPress={headerButtonPressHandler}/>
           }
         })
     },[navigation,headerButtonPressHandler])
