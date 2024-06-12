@@ -6,7 +6,7 @@ function UserScreen({navigation}) {
   
   }
   return (
-    <View style={styles.rootContainer}>
+    <View style={styles.rootContainer}>33333
       <Text>
         This is the <Text style={styles.highlight}>"User"</Text> screen!
       </Text>
