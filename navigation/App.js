@@ -10,7 +10,7 @@ import FavoriteScreen from './screens/FavoriteScreen';
 import {Ionicons} from "@expo/vector-icons";
 const Stack = createNativeStackNavigator();
 
-const Drawer=createDrawerNavigator();
+const Drawer=createDrawerNavigator();33
 function DrawerNavigator(){
   return <Drawer.Navigator screenOptions={{ 
     headerStyle:{
