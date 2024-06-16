@@ -18,9 +18,7 @@ export default function MealsDetailScreen({route,navigation}) {
     function changeFavoriteStatusHandler(){
      if(mealIsFavorite){
       favoriteMealCtx.removeFavorite(mealId)
-      console.log("dd")
      }else{
-      console.log('add')
       favoriteMealCtx.addFavorites(mealId)
      }
     }
