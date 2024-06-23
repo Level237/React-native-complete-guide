@@ -5,7 +5,7 @@ export default function ExpenseSummary({expense,periodName}) {
 
     const expensesSum=expense.reduce((sum,expense)=>{
         return sum+expense.amount;
-    },O);
+    },0);
   return (
     <View>
             <Text>{periodName}</Text>
