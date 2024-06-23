@@ -4,7 +4,7 @@ import React from 'react'
 export default function RecentExpenseScreen() {
   return (
     <View>
-      <Text>RecentExpenseScreen</Text>
+       <ExpenseOutput expensesPeriod="Last 7 days"/>
     </View>
   )
 }
