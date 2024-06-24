@@ -3,8 +3,14 @@ import { GlobalStyles } from '../../constants/style'
 import { getFormatedDate } from '../../utils/date'
 
 export default function ExpenseItem({description,amount,date}) {
+
+    function expensePressHandler(){
+
+    }
   return (
-    <Pressable>
+    <Pressable onPress={expensePressHandler} style={({pressed})=>pressed && styles.pressed}
+    android_ripple
+    >
 
         <View style={styles.expenseItem}>
 
@@ -23,6 +29,9 @@ export default function ExpenseItem({description,amount,date}) {
 }
 
 const styles=StyleSheet.create({
+    pressed:{
+        opacity:0.75
+    },
     expenseItem:{
         backgroundColor:GlobalStyles.colors.primary500,
         flexDirection:'row',
