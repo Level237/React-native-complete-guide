@@ -4,7 +4,7 @@ import React from 'react'
 function ManageExpenseScreen() {
   return (
     <View>
-      <Text>s</Text>
+      <Text>sss</Text>
     </View>
   )
 }

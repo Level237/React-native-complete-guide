@@ -8,6 +8,8 @@ import RecentExpenseScreen from './screens/RecentExpenseScreen';
 import { GlobalStyles } from './constants/style';
 import {Ionicons} from "@expo/vector-icons"
 import IconButton from './components/UI/IconButton';
+
+
 const Stack=createNativeStackNavigator();
 const BottomTabs=createBottomTabNavigator();
 
@@ -46,13 +48,24 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator 
+        screenOptions={{ 
+          headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
+          headerTintColor:'white',
+          presentation:'modal'
+         }}
+        >
           <Stack.Screen name="ExpensesOverview" component={ExpensesOverview} options={
             {
               headerShown:false
             }
           }/>
-          <Stack.Screen name="ManageExpense" component={ManageExpenseScreen}/>
+          <Stack.Screen name="ManageExpense" component={ManageExpenseScreen}
+          options={{ 
+           animation:"slide_from_bottom",
+           presentation:'modal',
+           }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
