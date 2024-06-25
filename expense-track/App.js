@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import AllExpensesScreen from './screens/AllExpensesScreen';
 import ManageExpenseScreen from './screens/ManageExpenseScreen';
 import RecentExpenseScreen from './screens/RecentExpenseScreen';
@@ -10,7 +10,7 @@ import {Ionicons} from "@expo/vector-icons"
 import IconButton from './components/UI/IconButton';
 
 
-const Stack=createNativeStackNavigator();
+const Stack=createStackNavigator();
 const BottomTabs=createBottomTabNavigator();
 
 function ExpensesOverview(){
@@ -52,7 +52,6 @@ export default function App() {
         screenOptions={{ 
           headerStyle:{backgroundColor:GlobalStyles.colors.primary500},
           headerTintColor:'white',
-          presentation:'modal'
          }}
         >
           <Stack.Screen name="ExpensesOverview" component={ExpensesOverview} options={
@@ -62,7 +61,7 @@ export default function App() {
           }/>
           <Stack.Screen name="ManageExpense" component={ManageExpenseScreen}
           options={{ 
-           animation:"slide_from_bottom",
+           
            presentation:'modal',
            }}
           />
