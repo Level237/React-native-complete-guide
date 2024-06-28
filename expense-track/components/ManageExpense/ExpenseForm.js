@@ -1,11 +1,32 @@
-import { View, Text, TextInput } from 'react-native'
+import { View} from 'react-native'
 import React from 'react'
+import Input from './Input'
 
-export default function ExpenseForm({label,textInputConfig}) {
+export default function ExpenseForm() {
+
+    function amountChangeHandler(){
+
+    }
   return (
     <View>
-      <Text>{label}</Text>
-      <TextInput {...textInputConfig}/>
+     <Input label="Amount" textInputConfig={{ 
+        keyboardType:"decimal-pad",
+        onChangeText:amountChangeHandler,
+      }}/>
+     <Input label="Date" 
+     textInputConfig={{ 
+        placeholder:'YYYY-MM-DD',
+        maxLength:10,
+        onChangeText:()=>{
+
+        }
+      }}
+     />
+     <Input label="Description"
+     textInputConfig={{ 
+        
+      }}
+     />
     </View>
   )
 }
