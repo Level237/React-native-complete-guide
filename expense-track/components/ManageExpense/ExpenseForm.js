@@ -25,6 +25,7 @@ export default function ExpenseForm() {
      <Input label="Description"
      textInputConfig={{ 
         multiline:true,
+        numberOfLines:4
         //autoCapitalize:'none',
         //autoCorrect:false
       }}

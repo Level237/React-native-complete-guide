@@ -59,8 +59,6 @@ const styles=StyleSheet.create({
   deleteContainer:{
     marginTop:16,
     paddingTop:8,
-    borderTopWidth:2,
-    borderTopColor:GlobalStyles.colors.primary200,
     alignItems:'center'
   },
   buttons:{
