@@ -2,7 +2,7 @@ import { View, Text,TextInput, StyleSheet } from 'react-native'
 import React from 'react'
 import { GlobalStyles } from '../../constants/style'
 
-export default function Input({label,textInputConfig}) {
+export default function Input({label,style,textInputConfig}) {
 
     const inputStyles=[styles.input];
 
@@ -10,9 +10,9 @@ export default function Input({label,textInputConfig}) {
         inputStyles.push(styles.inputMultiline)
     }
   return (
-    <View style={styles.InputContainer}>
+    <View style={[styles.InputContainer,style]}>
        <Text style={styles.label}>{label}</Text>
-      <TextInput  style={styles.input} {...textInputConfig}/>
+      <TextInput  style={inputStyles} {...textInputConfig}/>
     </View>
   )
 }
@@ -20,7 +20,7 @@ export default function Input({label,textInputConfig}) {
 const styles=StyleSheet.create({
     InputContainer:{
         marginHorizontal:4,
-        marginVertical:8
+        marginVertical:8,
     },
     label:{
         fontSize:12,
@@ -33,10 +33,10 @@ const styles=StyleSheet.create({
         borderRadius:6,
         fontSize:18,
         color:GlobalStyles.colors.primary700,
-        textAlignVertical:'top'
+        textAlignVertical:'top',
+        
     },
     inputMultiline:{
         minHeight:100,
-        
     }
 })

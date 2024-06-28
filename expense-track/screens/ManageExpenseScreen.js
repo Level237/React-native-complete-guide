@@ -64,7 +64,8 @@ const styles=StyleSheet.create({
   buttons:{
     flexDirection:'row',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    
   },
   button:{
     minWidth:120,
