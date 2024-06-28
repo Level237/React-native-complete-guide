@@ -3,7 +3,7 @@ import { GlobalStyles } from '../../constants/style';
 
 
 export default function ExpenseSummary({expense,periodName}) {
-
+    
     const expensesSum=expense.reduce((sum,expense)=>{
         return sum+expense.amount;
     },0);

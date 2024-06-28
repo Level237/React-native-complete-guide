@@ -8,7 +8,7 @@ export default function AllExpensesScreen() {
   const expensesCtx=useContext(ExpensesContext)
   return (
     <View>
-      <ExpenseOutput expenses={expensesCtx} expensesPeriod="Total"/>
+      <ExpenseOutput expenses={expensesCtx.expenses} expensesPeriod="Total"/>
     </View>
   )
 }

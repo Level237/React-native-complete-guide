@@ -9,6 +9,6 @@ export default function ExpensesList({expenses}) {
   return (
     <FlatList data={expenses} renderItem={renderExpensesItem}
     
-    keyExtrator={(item)=>item.id}/>
+    keyExtractor={(item)=>item.id}/>
   )
 }
