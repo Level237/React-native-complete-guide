@@ -17,7 +17,7 @@ export default function RecentExpenseScreen() {
   
   return (
     <View>
-       <ExpenseOutput  expenses={recentExpenses} expensesPeriod="Last 7 days"/>
+       <ExpenseOutput  expenses={recentExpenses} fallbackText={"No Expenses Registered the last 7 days"} expensesPeriod="Last 7 days"/>
     </View>
   )
 }
