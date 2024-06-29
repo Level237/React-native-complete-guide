@@ -35,11 +35,8 @@ function ManageExpenseScreen({route,navigation}) {
   }
   return (
     <View style={styles.container}>
-      <ExpensesForm/>
-      <View style={styles.buttons}>
-        <Button style={styles.button} mode="flat" onPress={cancelHandler}>Cancel</Button>
-        <Button style={styles.button}  onPress={confirmHandler}>{isEditing ? 'Update' : 'Add'}</Button>
-      </View>
+      <ExpensesForm submitLabel={isEditing ? "Update" : "Add"} onCancel={cancelHandler} onsubmit={confirmHandler}/>
+     
       <View style={styles.deleteContainer}>
       {isEditing && <IconButton icon={"trash"} color={GlobalStyles.colors.error500} size={36} onPress={deleteExpenseHandler}/>}
       </View>
@@ -61,14 +58,5 @@ const styles=StyleSheet.create({
     paddingTop:8,
     alignItems:'center'
   },
-  buttons:{
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems:'center',
-    
-  },
-  button:{
-    minWidth:120,
-    marginHorizontal:8
-  }
+  
 })
