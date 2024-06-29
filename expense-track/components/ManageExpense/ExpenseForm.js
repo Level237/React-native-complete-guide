@@ -17,6 +17,16 @@ export default function ExpenseForm({onCancel,onsubmit,submitLabel}) {
         }
       })
     }
+
+    function submitHandler(){
+      const expenseData={
+        amount:+inputValues.amount,
+        date:new Date(inputValues.date),
+        description:inputValues.description
+      };
+
+      onsubmit(expenseData)
+    }
   return (
     <View style={styles.form}>
 
@@ -54,7 +64,7 @@ export default function ExpenseForm({onCancel,onsubmit,submitLabel}) {
      />
       <View style={styles.buttons}>
         <Button style={styles.button} mode="flat" onPress={onCancel}>Cancel</Button>
-        <Button style={styles.button}  onPress={onsubmit}>{submitLabel}</Button>
+        <Button style={styles.button}  onPress={submitHandler}>{submitLabel}</Button>
       </View>
     </View>
   )

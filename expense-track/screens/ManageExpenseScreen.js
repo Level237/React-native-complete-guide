@@ -25,11 +25,11 @@ function ManageExpenseScreen({route,navigation}) {
   function cancelHandler(){
     navigation.goBack();
   }
-  function confirmHandler(){
+  function confirmHandler(expenseData){
     if(isEditing){
-      expenseCtx.updateExpense(editedExpenseId,{description:"Test1234",amount:10.8,date:new Date('2024-06-28')})
+      expenseCtx.updateExpense(editedExpenseId,expenseData)
     }else{
-      expenseCtx.addExpense({description:"Test",amount:20.8,date:new Date('2024-06-28')})
+      expenseCtx.addExpense(expenseData)
     }
     navigation.goBack();
   }
