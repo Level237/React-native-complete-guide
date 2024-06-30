@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Input from './Input'
 import Button from '../UI/Button'
 import { getFormatedDate } from '../../utils/date'
+import { GlobalStyles } from '../../constants/style'
 
 export default function ExpenseForm({onCancel,onsubmit,submitLabel,defaultValues}) {
     const [inputs, setInputs] = useState({
@@ -57,6 +58,7 @@ export default function ExpenseForm({onCancel,onsubmit,submitLabel,defaultValues
         <View style={styles.inputsRow}>
         <Input label="Amount"
         style={styles.rowInput}
+        invalid={!inputs.amount.isValid}
         textInputConfig={{ 
         keyboardType:"decimal-pad",
         onChangeText:inputChangeHandler.bind(this,'amount'),
@@ -64,9 +66,11 @@ export default function ExpenseForm({onCancel,onsubmit,submitLabel,defaultValues
       }}/>
      <Input label="Date" 
      style={styles.rowInput}
+     invalid={!inputs.date.isValid}
      textInputConfig={{ 
         placeholder:'YYYY-MM-DD',
         maxLength:10,
+        
         onChangeText:inputChangeHandler.bind(this,'date'),
         value:inputs.date.value
       }}
@@ -75,6 +79,7 @@ export default function ExpenseForm({onCancel,onsubmit,submitLabel,defaultValues
 
         </View>
         <Input label="Description"
+         invalid={!inputs.description.isValid}
      textInputConfig={{ 
         multiline:true,
         numberOfLines:4,
@@ -85,7 +90,7 @@ export default function ExpenseForm({onCancel,onsubmit,submitLabel,defaultValues
       }}
       
      />
-     {formIsValid && <Text>Invalid input values-please check your entered data</Text>}
+     {formIsValid && <Text style={styles.errorText}>Invalid input values-please check your entered data</Text>}
       <View style={styles.buttons}>
         <Button style={styles.button} mode="flat" onPress={onCancel}>Cancel</Button>
         <Button style={styles.button}  onPress={submitHandler}>{submitLabel}</Button>
@@ -117,6 +122,11 @@ const styles=StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     
+  },
+  errorText:{
+    color:GlobalStyles.colors.error500,
+    margin:8,
+    textAlign:"center"
   },
   button:{
     minWidth:120,
