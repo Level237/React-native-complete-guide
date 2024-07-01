@@ -6,6 +6,7 @@ import { GlobalStyles } from '../constants/style';
 import Button from '../components/UI/Button';
 import { ExpensesContext } from '../store/expense-context';
 import ExpensesForm from "../components/ManageExpense/ExpenseForm"
+import { storeExpense } from '../utils/http';
 function ManageExpenseScreen({route,navigation}) {
   const editedExpenseId=route.params?.expenseId;
   const isEditing=!!editedExpenseId;
@@ -31,6 +32,7 @@ function ManageExpenseScreen({route,navigation}) {
     if(isEditing){
       expenseCtx.updateExpense(editedExpenseId,expenseData)
     }else{
+      storeExpense(expenseData)
       expenseCtx.addExpense(expenseData)
     }
     navigation.goBack();
