@@ -28,11 +28,11 @@ function ManageExpenseScreen({route,navigation}) {
   function cancelHandler(){
     navigation.goBack();
   }
-  function confirmHandler(expenseData){
+  async function confirmHandler(expenseData){
     if(isEditing){
       expenseCtx.updateExpense(editedExpenseId,expenseData)
     }else{
-      storeExpense(expenseData)
+      await storeExpense(expenseData)
       expenseCtx.addExpense(expenseData)
     }
     navigation.goBack();

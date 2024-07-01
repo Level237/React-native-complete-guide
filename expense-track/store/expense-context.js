@@ -1,4 +1,4 @@
-import { Children, createContext, useReducer } from "react";
+import { act, Children, createContext, useReducer } from "react";
 
 
 export const ExpensesContext=createContext({
@@ -12,8 +12,7 @@ export const ExpensesContext=createContext({
 function expensesReducer(state,action){
     switch(action.type){
         case 'ADD':
-            const id=new Date().toString() + Math.random().toString();
-            return [{...action.payload,id:id},...state]
+            return [action.payload,...state]
         case 'SET':
             return action.payload;
         case 'UPDATE':
@@ -37,7 +36,8 @@ function ExpensesContextProvider({children}){
         dispatch({type:'ADD',payload:expenseData})
     }
     function setExpenses(expenses){
-        dispatch({type:'SET',payload:expenses})
+        const inverted=action.payload.reverse();
+        dispatch({type:'SET',payload:inverted})
     }
     function deleteExpense(id){
         dispatch({type:'DELETE',payload:id})
