@@ -1,15 +1,17 @@
 
 import { StyleSheet, View,TextInput} from 'react-native'
-import React, { useContext, useLayoutEffect } from 'react'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import IconButton from '../components/UI/IconButton';
 import { GlobalStyles } from '../constants/style';
 import Button from '../components/UI/Button';
 import { ExpensesContext } from '../store/expense-context';
 import ExpensesForm from "../components/ManageExpense/ExpenseForm"
 import { deleteExpense, storeExpense, updateExpense } from '../utils/http';
+import LoadingOverlay from '../components/UI/LoadingOverlay';
 function ManageExpenseScreen({route,navigation}) {
   const editedExpenseId=route.params?.expenseId;
   const isEditing=!!editedExpenseId;
+  const [isLoading,setIsLoading]=useState(false)
   const expenseCtx=useContext(ExpensesContext)
   const selectedExpense=expenseCtx.expenses.find(expense=>{
     return expense.id===editedExpenseId
@@ -30,6 +32,7 @@ function ManageExpenseScreen({route,navigation}) {
     navigation.goBack();
   }
   async function confirmHandler(expenseData){
+    setIsLoading(true)
     if(isEditing){
       expenseCtx.updateExpense(editedExpenseId,expenseData)
       await updateExpense(editedExpenseId,expenseData)
@@ -38,6 +41,9 @@ function ManageExpenseScreen({route,navigation}) {
       expenseCtx.addExpense({...expenseData,id:id})
     }
     navigation.goBack();
+  }
+  if(isLoading){
+    return <LoadingOverlay/>
   }
   return (
     <View style={styles.container}>

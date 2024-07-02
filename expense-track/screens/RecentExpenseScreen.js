@@ -4,17 +4,25 @@ import ExpenseOutput from '../components/Expenses/ExpenseOutput'
 import { DUMMY_EXPENSES, ExpensesContext } from '../store/expense-context'
 import { getDateMinusDays } from '../utils/date'
 import { getExpense } from '../utils/http'
+import LoadingOverlay from '../components/UI/LoadingOverlay'
 
 export default function RecentExpenseScreen() {
+  const [isFetching,setIsFecthing]=useState(true)
   const expensesCtx=useContext(ExpensesContext)
   useEffect(()=>{
 
     async function fetchExpenses(){
+      setIsFecthing(true)
       const expenses=await  getExpense();
+      setIsFecthing(false)
       expensesCtx.setExpenses(expenses)
     }
     fetchExpenses()
-  })
+  },[])
+
+  if(isFetching){
+    return <LoadingOverlay/>
+  }
   //const expensesCtx=useContext(ExpensesContext)
   const recentExpenses=expensesCtx.expenses.filter((expense)=>{
     const today=new Date();
