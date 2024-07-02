@@ -8,10 +8,12 @@ import { ExpensesContext } from '../store/expense-context';
 import ExpensesForm from "../components/ManageExpense/ExpenseForm"
 import { deleteExpense, storeExpense, updateExpense } from '../utils/http';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
+import ErrorOverlay from '../components/UI/ErrorOverlay';
 function ManageExpenseScreen({route,navigation}) {
   const editedExpenseId=route.params?.expenseId;
   const isEditing=!!editedExpenseId;
   const [isLoading,setIsLoading]=useState(false)
+  const [error,setError]=useState(null)
   const expenseCtx=useContext(ExpensesContext)
   const selectedExpense=expenseCtx.expenses.find(expense=>{
     return expense.id===editedExpenseId
@@ -23,27 +25,44 @@ function ManageExpenseScreen({route,navigation}) {
   },[navigation,isEditing]);
  
   async function deleteExpenseHandler(){
-    await deleteExpense(editedExpenseId)
-    expenseCtx.deleteExpense(editedExpenseId)
-    navigation.goBack();
-    console.log("delete")
+    setIsLoading(true)
+    try {
+      await deleteExpense(editedExpenseId)
+      expenseCtx.deleteExpense(editedExpenseId)
+      navigation.goBack();
+    } catch (error) {
+      setError("Could not delete expense-please try again later")
+      setIsLoading(false);
+    }
+    
   }
   function cancelHandler(){
     navigation.goBack();
   }
   async function confirmHandler(expenseData){
     setIsLoading(true)
-    if(isEditing){
-      expenseCtx.updateExpense(editedExpenseId,expenseData)
-      await updateExpense(editedExpenseId,expenseData)
-    }else{
-      const id=await storeExpense(expenseData)
-      expenseCtx.addExpense({...expenseData,id:id})
+    try {
+      if(isEditing){
+        expenseCtx.updateExpense(editedExpenseId,expenseData)
+        await updateExpense(editedExpenseId,expenseData)
+      }else{
+        const id=await storeExpense(expenseData)
+        expenseCtx.addExpense({...expenseData,id:id})
+      }
+      navigation.goBack();
+    } catch (error) {
+      setError("Could not save data-please try again later")
+      setIsLoading(false); 
     }
-    navigation.goBack();
+   
   }
   if(isLoading){
     return <LoadingOverlay/>
+  }
+
+
+  if(error && !isLoading){
+    return <ErrorOverlay message={error}/>
   }
   return (
     <View style={styles.container}>

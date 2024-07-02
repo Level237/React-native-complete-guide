@@ -5,21 +5,33 @@ import { DUMMY_EXPENSES, ExpensesContext } from '../store/expense-context'
 import { getDateMinusDays } from '../utils/date'
 import { getExpense } from '../utils/http'
 import LoadingOverlay from '../components/UI/LoadingOverlay'
+import ErrorOverlay from '../components/UI/ErrorOverlay'
 
 export default function RecentExpenseScreen() {
   const [isFetching,setIsFecthing]=useState(true)
+  const [error,setError]=useState(null)
   const expensesCtx=useContext(ExpensesContext)
   useEffect(()=>{
 
     async function fetchExpenses(){
       setIsFecthing(true)
-      const expenses=await  getExpense();
+      try {
+        
+        const expenses=await  getExpense();
+        expensesCtx.setExpenses(expenses)
+      } catch (error) {
+      setError("Could not fetch expenses")
+      }
       setIsFecthing(false)
-      expensesCtx.setExpenses(expenses)
     }
     fetchExpenses()
   },[])
 
+  
+
+  if(error && !isFetching){
+    return <ErrorOverlay message={error}/>
+  }
   if(isFetching){
     return <LoadingOverlay/>
   }
