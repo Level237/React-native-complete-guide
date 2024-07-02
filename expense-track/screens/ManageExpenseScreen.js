@@ -6,7 +6,7 @@ import { GlobalStyles } from '../constants/style';
 import Button from '../components/UI/Button';
 import { ExpensesContext } from '../store/expense-context';
 import ExpensesForm from "../components/ManageExpense/ExpenseForm"
-import { storeExpense } from '../utils/http';
+import { deleteExpense, storeExpense, updateExpense } from '../utils/http';
 function ManageExpenseScreen({route,navigation}) {
   const editedExpenseId=route.params?.expenseId;
   const isEditing=!!editedExpenseId;
@@ -20,7 +20,8 @@ function ManageExpenseScreen({route,navigation}) {
     })
   },[navigation,isEditing]);
  
-  function deleteExpenseHandler(){
+  async function deleteExpenseHandler(){
+    await deleteExpense(editedExpenseId)
     expenseCtx.deleteExpense(editedExpenseId)
     navigation.goBack();
     console.log("delete")
@@ -31,9 +32,10 @@ function ManageExpenseScreen({route,navigation}) {
   async function confirmHandler(expenseData){
     if(isEditing){
       expenseCtx.updateExpense(editedExpenseId,expenseData)
+      await updateExpense(editedExpenseId,expenseData)
     }else{
-      await storeExpense(expenseData)
-      expenseCtx.addExpense(expenseData)
+      const id=await storeExpense(expenseData)
+      expenseCtx.addExpense({...expenseData,id:id})
     }
     navigation.goBack();
   }

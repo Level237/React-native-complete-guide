@@ -6,7 +6,8 @@ import { GlobalStyles } from '../../constants/style'
 
 
 export default function ExpenseOutput({expenses,expensesPeriod,fallbackText}) {
-  let content=<Text style={styles.infoText}>{fallbackText}</Text>
+  let content= <View style={styles.container}><Text style={styles.infoText}>{fallbackText}</Text></View>
+  
 
   if(expenses.length >0){
     content= <View style={styles.container}>

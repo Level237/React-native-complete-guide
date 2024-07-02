@@ -36,8 +36,7 @@ function ExpensesContextProvider({children}){
         dispatch({type:'ADD',payload:expenseData})
     }
     function setExpenses(expenses){
-        const inverted=action.payload.reverse();
-        dispatch({type:'SET',payload:inverted})
+        dispatch({type:'SET',payload:expenses})
     }
     function deleteExpense(id){
         dispatch({type:'DELETE',payload:id})
