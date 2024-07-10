@@ -15,8 +15,8 @@ function LoginScreen() {
       authCtx.authenticate(token);
     } catch (error) {
       Alert.alert('Authentication failed!','Could not log you in.Please check your credentials or try again later.')
+      setIsAuthenticated(false)
     }
-    setIsAuthenticated(false)
   }
 
   if(isAuthenticated){
