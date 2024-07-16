@@ -5,26 +5,29 @@ import PlaceItem from './PlaceItem'
 export default function PlaceList({places}) {
 
     if(!places || places.length ===0){
-        return <View style={styles.fallBackContainer}>
-            <Text style={styles.fallBackText}>No places added yet -- start adding some!</Text>
-        </View>
+        return (
+        <View style={styles.fallBackContainer}>
+                    <Text style={styles.fallBackText}>No places added yet -- start adding some!</Text>
+                </View>
+        )
+        
+        
     }
   return (
-    <View>
+    
      <FlatList data={places} keyExtractor={(item)=>item.id} renderItem={({item})=>{
         <PlaceItem place={item}/>
      }}/>
-    </View>
+    
   )
 }
 
 const styles=StyleSheet.create({
     fallBackContainer:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     fallBackText:{
-        color:'white'
+        fontSize:16
     }
 })

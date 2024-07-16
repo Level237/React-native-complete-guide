@@ -5,7 +5,7 @@ import PlaceList from '../components/Places/PlaceList'
 export default function AllPlacesScreen() {
   return (
     <View>
-      <PlaceList/>
+      <PlaceList />
     </View>
   )
 }
