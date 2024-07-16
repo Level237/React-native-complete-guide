@@ -1,6 +1,7 @@
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import React from 'react'
 import PlaceItem from './PlaceItem'
+import { Colors } from '../../constants/colors'
 
 export default function PlaceList({places}) {
 
@@ -24,10 +25,12 @@ export default function PlaceList({places}) {
 
 const styles=StyleSheet.create({
     fallBackContainer:{
+        height:"100%",
         alignItems: 'center',
         justifyContent: 'center',
     },
     fallBackText:{
-        fontSize:16
+        fontSize:16,
+        color:Colors.primary200
     }
 })

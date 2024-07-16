@@ -15,7 +15,6 @@ const styles=StyleSheet.create({
     button:{},
     pressed:{
         padding:8,
-        margin:4,
         justifyContent:'center',
         alignItems:"center"
     },
