@@ -1,10 +1,22 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, Button } from 'react-native'
+import { launchCameraAsync } from 'expo-image-picker'
 
 export default function ImagePicker() {
+
+  async function takeImageHandler(){
+    const image=await launchCameraAsync({
+      allowsEditing:true,
+      aspect:[16,9],
+      quality:0.5,
+    })
+    console.log(image)
+  }
   return (
     <View>
-      <Text>ImagePicker</Text>
+      <View>
+
+      </View>
+      <Button title="take image" onPress={takeImageHandler}/>
     </View>
   )
 }
