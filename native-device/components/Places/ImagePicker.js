@@ -29,7 +29,6 @@ export default function ImagePicker() {
       quality:0.5,
     })
     setPicketImage(image.assets[0].uri)
-    //console.log(image.assets[0].uri)
   }
   let imagePreview=<Text>No image taken</Text>
 
