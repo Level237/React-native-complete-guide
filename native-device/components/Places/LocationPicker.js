@@ -1,10 +1,12 @@
-import { View, Alert, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Alert, StyleSheet, Image, Text } from 'react-native'
+import React, { useState } from 'react'
 import OutlineButton from '../UI/OutlineButton'
 import { Colors } from '../../constants/colors'
 import { getCurrentPositionAsync,useForegroundPermissions,PermissionStatus } from 'expo-location'
+import { getMapPreview } from '../../utils/location'
 export default function LocationPicker() {
   const [locationPermissionInformation,requestPermission]=useForegroundPermissions()
+  const [pickedLocation,setPickedLocation]=useState()
   async function verifyPermissions(){
     if(locationPermissionInformation.status===PermissionStatus.UNDETERMINED){
       const permissionResponse= await requestPermission();
@@ -27,15 +29,26 @@ export default function LocationPicker() {
   }
 
    const location=await getCurrentPositionAsync()
-   console.log(location);
+   setPickedLocation({
+    lat:location.coords.altitude,
+    lon:location.coords.longitude
+  })
   }
 
   function pickOnMapHandler(){
+   
+  }
 
+  let locationPreview=<Text>No location picked yet.</Text>
+
+  if(pickedLocation){
+    locationPreview=(<Image style={styles.image} source={{ uri:getMapPreview(pickedLocation.lat,pickedLocation.lon) }}/>)
   }
   return (
     <View>
-      <View style={styles.mapPreview}></View>
+      <View style={styles.mapPreview}>
+        {locationPreview}
+      </View>
       <View style={styles.actions}>
         <OutlineButton onPress={getLocationHandler} icon="location">Locate User </OutlineButton>
         <OutlineButton onPress={pickOnMapHandler} icon="map">Pick on Map </OutlineButton>
@@ -58,6 +71,10 @@ const styles=StyleSheet.create({
     flexDirection:"row",
     justifyContent:'space-between',
     alignItems:'center'
+  },
+  image:{
+    width:"100%",
+    height:"100%"
   }
 })
 
